@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+}
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  width: 800px;
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+#teach-dutch {
+  height:100vh;
+  width:100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F35C6E;
+  h1 {
+    font-size: 200px;
+    font-weight: 300;
+  }
+}
+p {
+  color: #FFA87B
+  #F35C6E
+  #5C3E84
+  #FFD00C
+  #FC5050
+  #D1E9EA
+}
