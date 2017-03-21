@@ -7,6 +7,7 @@ socket.on('getIngredient', function(data) {
     fetchWordOnDevice(data);
 });
 
+
 // fetchFromAPI('appel');
 // fetchWordOnDevice('appel');
 
