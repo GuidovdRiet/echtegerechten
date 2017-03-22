@@ -11,35 +11,41 @@ socket.on('getIngredient', function(data) {
 // fetchFromAPI('appel');
 // fetchWordOnDevice('appel');
 
+var arr = [];
 function fetchWordOnDevice(data) {
-    // print word on screen
-    var teachDutch = document.getElementById('teach-dutch');
-    var word = document.createElement('h1');
-    word.appendChild(document.createTextNode(data));
-    teachDutch.innerHTML = '';
-    teachDutch.style.backgroundColor = selectBackgroundColor();
-    teachDutch.appendChild(word);
+
+    arr.push(data);
+    
+    if(arr.length == 1) {
+        setWord(arr[0], 'current_word');
+    }
+
+    if(arr.length == 2) {
+        setWord(arr[1], 'previous_word');
+    }
+
+    if(arr.length == 3) {
+        setWord(arr[0], 'previous_word');
+        setWord(arr[2], 'current_word');
+        arr.reverse();
+        arr.pop();
+        console.log('popped: ', arr);
+    }
+
     // speak out word on screen
     var msg = new SpeechSynthesisUtterance();
     msg.text = data;
     msg.lang = 'nl';
     speechSynthesis.speak(msg);
+
 }
 
-function selectBackgroundColor() {
-  var colors = [
-      '#FFA87B',
-      '#F35C6E',
-      '#5C3E84',
-      '#FC5050',
-      '#CF56A1',
-      '#94AC3C',
-      '#AEAF7A',
-      '#AEAF7A',
-      '#D1E9EA'
-  ];
-  var randInt = colors[Math.floor(Math.random() * colors.length)];
-  return randInt;
+function setWord(word, el) {
+    var wordElement = document.getElementById(el);
+    var wordHeader = document.createElement('h1');
+    wordHeader.appendChild(document.createTextNode(word));
+    wordElement.innerHTML = '';
+    wordElement.appendChild(wordHeader);
 }
 
 function fetchFromAPI(ingredient) {
@@ -61,24 +67,27 @@ function urlBuilder(ingredient) {
 
 function createList(json) {
     var recipeContainer = document.querySelector('.js-recipeContainer');
+    recipeContainer.innerHTML = '';
     for (var i = 0; i < json.matches.length; i++) {
-
+        var recipeListItem = document.createElement('li');
         var recipeName = document.createElement('h2');
         recipeName.innerText = json.matches[i].recipeName;
-        recipeContainer.appendChild(recipeName);
+        recipeListItem.appendChild(recipeName);
 
         var image = document.createElement('img');
         image.src = json.matches[i].smallImageUrls;
         image.src = image.src.replace("s90", "l360");
-        recipeContainer.appendChild(image);
+        recipeListItem.appendChild(image);
 
         var ingredients = document.createElement('p');
         ingredients.innerText = json.matches[i].ingredients;
-        recipeContainer.appendChild(ingredients);
+        recipeListItem.appendChild(ingredients);
 
         var rating = document.createElement('h4');
         rating.innerText = json.matches[i].rating;
-        recipeContainer.appendChild(rating);
+        recipeListItem.appendChild(rating);
+
+        recipeContainer.appendChild(recipeListItem);
     }
 }
 
