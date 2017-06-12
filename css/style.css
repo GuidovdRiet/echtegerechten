@@ -174,7 +174,7 @@ nav {
   height: 100%;
   background: #fff;
   opacity: 0;
-  visibility: visible;
+  visibility: visible; 
   z-index: 99;
   text-align: center;
   display: table;
@@ -215,3 +215,53 @@ nav {
     text-decoration: none; }
   .footer ul.footer-nav li a:hover {
     color: #F35C6E; }
+
+ .about {
+   max-width: 1300px;
+   margin: 40px auto 0 auto;
+   padding: 20px 50px;
+   justify-content: space-between;
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.handleiding {
+  padding-left: 20px;
+}
+
+ .text {
+  flex: 2;
+  order: 3;
+ }
+
+ .teammates {
+  flex: 1;
+  order: 1;
+ }
+
+ .teammates1 {
+   flex: 1;
+   order: 2;
+ }
+
+.htext {
+ padding: 20px;
+ box-sizing: border-box;
+ flex-basis: 33%;
+}
+
+.contact {
+  padding: 20px;
+}
+
+.mail {
+ display: flex;
+ justify-content: space-between;
+}
+
+.hr {
+  padding: 20px;
+  box-sizing: border-box;
+  flex-basis: 33%;
+  flex: 3;
+}
